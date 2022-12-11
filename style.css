@@ -64,31 +64,32 @@ header nav ul li a.active{
 
 header nav ul .expand{
     cursor: pointer;
+    position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 header nav ul li .arrowDown{
     height: 1em;
-    margin-top: .3rem;
+    margin-top: .4rem;
 }
 
-.containerMenu{
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.containerMenu .submenu{
-    width: fit-content;
-    height: 5em;
-    background-color: #272a31;
-    display: flex;
+header nav .submenu{
+    min-width: 11em;
+    min-height: 7em;
+    padding: .8rem;
+    display: none;
     flex-direction: column;
-    justify-content: space-around;
-    padding: .8rem 1rem;
-    border-radius: .8em;
-    margin: .5rem 0;
-    position: relative;
-    right: 19%;
+    justify-content: space-evenly;
+    background-color: #2d2f33;
+    position: absolute;
+    top: 100%;
+    margin-top: .5em;
+    border-radius: 12px;
+}
+
+header nav ul .expand:hover .submenu{
+    display: flex;
 }
 
 

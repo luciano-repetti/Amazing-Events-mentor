@@ -18,7 +18,14 @@
         <nav>
             <ul>
                 <li><a href="#" class="active">Home</a></li>
-                <li class="expand" onclick=""><a href="#">Events</a><img class="arrowDown" src="./img/arrow-down.png" alt=""></li>
+                <li class="expand" onclick="">
+                    <a href="#">Events</a>
+                    <img class="arrowDown" src="./img/arrow-down.png" alt="">
+                    <ul class="submenu" id="submenu">
+                        <li><a href="">Past Events</a></li>
+                        <li><a href="">Upcoming Events</a></li>
+                    </ul>
+                </li>
                 <li><a href="#">Contact</a></li>
                 <li><a href="#">Stats</a></li>
             </ul>
@@ -26,19 +33,13 @@
 
     </header>
 
-    <div class="containerMenu">
-        <div class="submenu">
-            <a href="">Past Events</a>
-            <a href="">Upcoming Events</a>
-        </div>
-    </div>
-
-
     <div class="navigationArrow">
         <img class="arrow" src="./img/arrow-left.png" alt="">
         <p>Home</p>
         <img class="arrow" src="./img/arrow-right.png" alt="">
     </div>
     
+
+    <script src="./main.js"></script>
 </body>
 </html>
