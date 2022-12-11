@@ -1,0 +1,112 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+}
+
+header{
+    width: 100%;
+    height: 60px;
+    padding: 0 1rem;
+    background-color: #272a31;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .containerLogo{
+    display: flex;
+    align-items: center;
+    width: min-content;
+    height: 100%;
+    margin-left: 5%;
+}
+
+header .containerLogo .logo{
+    height: 75%;
+}
+
+header nav{
+    display: flex;
+    width: 40%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+header nav ul{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+    list-style: none;
+}
+
+header nav ul li{
+    display: flex;
+    gap: .7em;
+    align-items: center;
+}
+
+header nav ul li a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.3em;
+}
+
+header nav ul li a.active{
+    color: #23c6fd;
+}
+
+header nav ul .expand{
+    cursor: pointer;
+}
+
+header nav ul li .arrowDown{
+    height: 1em;
+    margin-top: .3rem;
+}
+
+.containerMenu{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.containerMenu .submenu{
+    width: fit-content;
+    height: 5em;
+    background-color: #272a31;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: .8rem 1rem;
+    border-radius: .8em;
+    margin: .5rem 0;
+    position: relative;
+    right: 19%;
+}
+
+
+
+.navigationArrow{
+    width: 100%;
+    height: 60px;
+    background-color: #23c6fd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigationArrow .arrow{
+    height: 100%;
+    padding: 0 3rem;
+}
+
+.navigationArrow p{
+    font-size: 1.7em;
+}
