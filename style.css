@@ -32,10 +32,7 @@ header .containerLogo .logo{
 }
 
 header nav{
-    display: flex;
-    width: 40%;
-    align-items: center;
-    justify-content: space-evenly;
+    width: 45%;
 }
 
 header nav ul{
@@ -75,13 +72,18 @@ header nav ul .expand a{
     gap: .6rem;
 }
 
-header nav ul li .arrowDown{
-    height: .6em;
+
+header nav ul .expand svg{
+    height: 1em;
     margin-left: .2em;
     transition: transform .3s;
 }
 
-header nav .submenu{
+header nav ul .expand.show > a, header nav ul .expand.show svg{
+    color: #23c6fd;
+}
+
+header nav ul .expand .submenu{
     min-width: 11em;
     flex-direction: column;
     justify-content: space-evenly;
@@ -97,15 +99,11 @@ header nav .submenu{
     box-shadow: 0 .3em .5em rgba(0,0,0,.3);
 }
 
-.submenu:hover {
+header nav ul .expand.show .submenu {
     min-height: 7em;
 }
 
-header nav ul .expand a:focus ~ .submenu {
-    min-height: 7em;
-}
-
-header nav ul .expand a:focus img {
+header nav ul .expand.show svg {
     transform: rotate(180deg);
 }
 
@@ -119,8 +117,6 @@ header nav ul .expand a:focus img {
 .submenu li:hover {
     background-color: rgba(255,255,255,0.2);
 }
-
-
 
 .navigationArrow{
     width: 100%;
@@ -139,3 +135,131 @@ header nav ul .expand a:focus img {
 .navigationArrow p{
     font-size: 1.7em;
 }
+
+.navigationMobile{
+    display: none;
+}
+
+
+@media screen and (max-width: 48em){
+    header nav{
+        width: 50%;
+    }
+
+    header nav ul .expand a{
+        gap: 0;
+    }
+
+    header .containerLogo{
+        margin-left: 3%;
+    }
+
+    header .containerLogo .logo{
+        height: 60%;
+    }
+
+    header nav ul .expand .submenu{
+        min-width: 8em;
+    }
+
+    header nav ul .expand .submenu li a{
+        font-size: .9em;
+    }
+
+    header nav ul .expand.show .submenu {
+        min-height: 6em;
+    }
+
+    .navigationArrow .arrow{
+        height: 80%;
+        padding: 0 1.8rem;
+    }
+}
+
+@media screen and (max-width: 36em){
+    header{
+        padding: 0 0 0 1rem;
+    }
+
+    header .containerLogo{
+        margin-left: 0;
+    }
+    
+    header nav{
+        width: 65%;
+    }
+
+    header nav ul li a{
+        font-size: 1.15rem;
+    }
+}
+
+@media screen and (max-width: 28em){
+    header{
+        padding: 0;
+    }
+    
+    header nav{
+        display: none;
+    }
+
+    header .containerLogo{
+        width: 100%;
+        justify-content: center;
+    }
+
+    .navigationArrow{
+        display: none;
+    }
+
+
+    .navigationMobile{
+        position: fixed;
+        border-radius: 1em;
+        bottom: 1em;
+        display: flex;
+        justify-content: space-evenly;
+        width: 95%;
+        margin-left: 2.5%;
+        height: 80px;
+        padding-top: .5rem;
+        background-color: #272a31;
+    }
+
+    .navigationMobile .boton{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        min-width: 20%;
+        height: 100%;
+    }
+
+    .navigationMobile .boton svg{
+        width: 70%;
+        height: 40%;
+        color: rgba(255, 255, 255, 0.726);
+    }
+
+    .navigationMobile .boton .pastEvents{
+        transform: rotate(180deg);
+    }
+
+    .navigationMobile .boton a{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        text-decoration: none;
+        color: rgba(255, 255, 255, 0.712);
+        height: 100%;
+    }
+
+    .navigationMobile .boton a p{
+        font-size: 1em;
+        width: 90%;
+        height: 50%;
+        align-items: center;
+        display: flex;
+    }
+}
+
