@@ -135,73 +135,52 @@ function filter(dataEvents) {
 
 function categoriesStats(events) {
   let categories = filterCategorys(events);
+  const arrayCategories = categories.map(category => events.filter(event => event.category === category))
 
-  let eventsRevenues = [];
-  let eventsPercentaje = [];
-  let categoriesStats = [];
-
-  // primero tranformo el array de categorias en un array de categorias por evento.
-
-  const arrayCategories = categories.map((category) =>
-    events.filter((event) => event.category === category)
-  );
-  console.log(arrayCategories);
-
-  // segundo reduzco cada array para obtener lo estadisticos que necesito.
-
-  // En el reduce entra un array de objetos(eventos de esa categoria)
-  // Debe salir la reduccion, que seria un objeto con las propiedades ganacia(suma de todas las ganancias), porcentaje de asistencia y las categorias
-
-  arrayCategories.reduce((acc, category) => {
-    console.log(acc, category)
-    category.forEach(event =>{
-        if (event.assistance) {
-          acc =+ category.assistance * category.price;
-        } else if (event.estimate) {
-          acc =+ category.estimate * category.price;
-        }
+  
+  const arrayStats = arrayCategories.map(categoryEvents => {
+    
+    let objetoStats = categoryEvents.reduce((acc, event) =>{
+        acc.category = event.category
+        acc.revenue += ((event.assistance || event.estimate) * event.price);
+        acc.attendance += ((event.assistance || event.estimate) * 100) / event.capacity
+        
+        return acc
+      }, {
+        category: "",
+        revenue: 0,
+        attendance: 0,
+      })
+    
+      objetoStats.attendance = objetoStats.attendance / categoryEvents.length
+      return objetoStats
     })
-    //este es el objeto 0 con el que empieza la reduccion, en cada iteracion se van haciendo las operaciones necesesarias para reducir el array a un objeto reducido
-    //para reducir la categoria tengo que 
-  }, {
-    category: "",
-    revenues: 0,
-    percentage: 0,
-  });
+    return arrayStats
+}
 
-  // categories.forEach(category =>{
-  //     events.reduce((acc, event) =>{
-  //         if(event.category === category){
-  //             if(event.assistance){
-  //                 acc =+ event.assistance * event.price
-  //             }else if(event.estimate){
-  //                 acc =+ event.estimate * event.price
-  //             }
-  //             eventsRevenues.push(acc)
-  //         }
-  //     }, 0)
+function attendance(eventsPast){
+  const arrayAttendance = eventsPast.map(event => {
+    return {
+      attendance: event.assistance * 100 / event.capacity,
+      nameEvent: event.name
+    }
+  })
 
-  //     events.reduce((acc, event) =>{
-  //         if(event.category === category){
-  //             if(event.assistance){
-  //                 acc =+ (event.assistance * 100) / event.capacity
-  //             }else if(event.estimate){
-  //                 acc =+ (event.estimate * 100) / event.capacity
-  //             }
-  //             eventsPercentaje.push(acc.toFixed(2))
-  //         }
-  //     }, 0)
-  // })
-  // for (let i = 0; i < categories.length; i++) {
-  //     categoriesStats.push(
-  //         {
-  //             category: categories[i],
-  //             revenue: eventsRevenues[i],
-  //             percentaje: eventsPercentaje[i]
-  //         }
-  //     )
-  // }
-  // return categoriesStats
+  arrayAttendance.sort((a,b) => a.attendance - b.attendance).reverse()
+  return arrayAttendance
+  
+}
+
+function capacity(eventsPast){
+  const arrayCapacity = eventsPast.map(event => {
+    return {
+      capacity: event.assistance * event.price,
+      nameEvent: event.name
+    }
+  })
+
+  arrayCapacity.sort((a,b) => a.capacity - b.capacity).reverse()
+  return arrayCapacity
 }
 
 function printStats(categoriesArray, container) {
@@ -211,7 +190,18 @@ function printStats(categoriesArray, container) {
         <tr>
             <td>${category.category}</td>
             <td>$${category.revenue}</td>
-            <td>${category.percentaje}%</td>
+            <td>${category.attendance.toFixed(2)}%</td>
         </tr>`;
   });
+}
+
+function printStatsTop(objetoStats, container) {
+  container.innerHTML = "";
+  console.log(objetoStats)
+    container.innerHTML = `
+        <tr>
+            <td>${objetoStats[0]}</td>
+            <td>${objetoStats[1]}</td>
+            <td>${objetoStats[2]}</td>
+        </tr>`;
 }
